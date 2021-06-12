@@ -1,0 +1,46 @@
+.benefit-container {
+    display: flex;
+}
+h5 {
+    font-weight: 600;
+}
+.benefit-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+}
+ .benefit-image-container > img {
+    height: 80%;
+    width: 80%;
+    object-fit: contain;
+ }
+.benefit-detail-container {
+    padding-top: auto;
+    align-items: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    //background-color: tomato;
+}
+.benefit-row {
+    width: 80%;
+}
+.benefit-card {
+    text-align: center;
+    width: 30%;
+    height: 95%;
+}
+.btn {
+    background-color: #FFC106;
+    color: white;
+    width: 80%;
+    font-weight: 600;
+}
+.btn:hover {
+    color: gray;
+    background-color: white;
+    border: 2px solid #FFC106;
+}

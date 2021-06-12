@@ -1,0 +1,45 @@
+.section {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #246AA4;
+    height: 50px;
+}
+
+.footer-grid {
+    flex: 1;
+}
+.footer-grid h5 {
+    font-weight: 600;
+    color: #195389;
+}
+
+.footer-socmed {
+    color: #9197a4;
+    margin-bottom: 0px;
+}
+
+.footer-socmed a {
+    color: #9197a4;
+    text-decoration: none;
+}
+
+.footer-socmed a:hover {
+    opacity: 0.7;
+}
+
+.fa {
+    padding: 1%;
+    margin-right: .5rem;
+    font-size: 1.1rem;
+    width: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    color: #9197a4;
+  }
