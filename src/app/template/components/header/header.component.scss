@@ -1,6 +1,7 @@
 nav {
     display: flex;
     flex-direction: row;
+    transition: background-color 200ms linear;
 }
 
 .navbar-nav {
