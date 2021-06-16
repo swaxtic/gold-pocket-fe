@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://use.typekit.net/vyz1ujy.css");
 
 * {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'muli', sans-serif;
 }
-
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';

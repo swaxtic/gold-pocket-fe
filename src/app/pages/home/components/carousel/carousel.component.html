@@ -1,29 +1,22 @@
-<ngb-carousel *ngIf="images">
-    <ng-template ngbSlide>
-        <div class="carousel">
-            <img [src]="images[0]" alt="Random first slide">
+<div home id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" *ngFor="let item of carouselData; let index = index" [attr.data-bs-slide-to]="index" [class.active]="index==0"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let item of carouselData;let index = index" [class.active]="index==0">
+        <img [src]="item.urlImage" class="d-block w-100" [alt]="item.title">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 [textContent]="item.title"></h5>
+          <p [textContent]="item.desciption"></p>
         </div>
-        <div class="carousel-caption">
-            <h3>Gold Investment</h3>
-            <p>Invest your assets and wealth in gold.</p>
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="carousel">
-            <img [src]="images[1]" class="image" alt="Random second slide">
-        </div>
-        <div class="carousel-caption">
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="carousel">
-            <img [src]="images[2]" alt="Random third slide">
-        </div>
-        <div class="carousel-caption">
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-        </div>
-    </ng-template>
-</ngb-carousel>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>

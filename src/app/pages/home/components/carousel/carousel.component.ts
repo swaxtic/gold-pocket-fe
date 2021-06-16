@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';  
+import { Component, OnInit } from '@angular/core'; 
 
 @Component({
   selector: 'app-carousel',
@@ -8,16 +7,26 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CarouselComponent implements OnInit {
 
-  images = [1, 2, 3].map((n) => `/assets/carousel-${n}.png`);
-
-  constructor(config: NgbCarouselConfig) {  
-    config.interval = 4000;  
-    config.wrap = true;  
-    config.keyboard = false;  
-    config.pauseOnHover = true;  
-  } 
+  carouselData = [
+    {
+      urlImage: '../../../../../assets/images/carousel-1.png',
+      title: "Gold Investment",
+      desciption: 'Invest your assets and wealth in gold.'
+    },
+    {
+      urlImage: '../../../../../assets/images/carousel-2.png',
+      title: "Second slide label",
+      desciption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      urlImage: '../../../../../assets/images/carousel-3.png',
+      title: "Third slide label",
+      desciption: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+    },
+  ]
 
   ngOnInit(): void {
+
   }
 
 }
