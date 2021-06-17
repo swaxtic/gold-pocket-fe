@@ -1,12 +1,65 @@
 nav {
-    display: flex;
-    flex-direction: row;
-    transition: background-color 200ms linear;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  transition: background-color 200ms linear;
 }
-
 .navbar-nav {
-    flex : 1;
+  flex : 1;
 }
 nav li:hover {
-    font-weight: bold;
+  font-weight: bold;
 }
+nav.show {
+  padding: 3vh 3vw;
+  transition: 0.6s;
+}
+nav.bg-transparent a, nav.bg-transparent a:hover{
+  color: white;
+}
+.searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 40px;
+  background-color: #246AA4;;
+  border-radius: 30px;
+  padding: 10px;
+  }
+
+  .search_input{
+  color: white;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color:transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
+  }
+
+  ::placeholder {
+    color: white;
+  }
+
+  .searchbar:hover > .search_input{
+  padding: 0 10px;
+  width: 450px;
+  caret-color:white;
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_icon{
+  color: white;
+  }
+
+  .search_icon{
+  height: 20px;
+  width: 20px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:white;
+  text-decoration:none;
+  }

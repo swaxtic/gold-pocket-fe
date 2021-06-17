@@ -1,7 +1,7 @@
 import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 
 enum NavBarStyle {
-  default = 'navbar-light bg-light shadow-sm',
+  onScroll = 'navbar-light bg-light shadow-sm show',
   transparent = 'navbar-light bg-transparent'
 }
 
@@ -14,8 +14,8 @@ export class NavNavbarDirective {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    if (window.pageYOffset > 0) {
-      this.navbarStyle = NavBarStyle.default;
+    if (window.pageYOffset > 40) {
+      this.navbarStyle = NavBarStyle.onScroll;
     } else {
       this.navbarStyle = NavBarStyle.transparent;
     }
