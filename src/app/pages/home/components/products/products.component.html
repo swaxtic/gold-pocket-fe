@@ -4,7 +4,7 @@
         <div *ngFor="let product of productsData" class="product-card card" id="platinum">
             <img [src]="product.imageUrl" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title" [textContent]="product.title"></h5>
+                <h5 class="card-title" [textContent]="product.title | titlecase"></h5>
                 <p class="card-text" [textContent]="product.description"></p>
               </div>
         </div>

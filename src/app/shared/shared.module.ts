@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavNavbarDirective } from './directives/nav-navbar/nav-navbar.directive';
+import { DateformatPipe } from './pipes/date-format/dateformat.pipe';
 
-const DIRECTIVES = [NavNavbarDirective]
+const DIRECTIVES = [NavNavbarDirective, DateformatPipe]
 
 @NgModule({
   declarations: [
