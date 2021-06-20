@@ -7,6 +7,8 @@ import { ProductsComponent } from './home/components/products/products.component
 import { TemplateModule } from '../template/template.module';
 import { BenefitComponent } from './home/components/benefit/benefit.component';
 import { HomeModule } from './home/home.module';
+import { RouterModule } from '@angular/router';
+import { LoginModule } from './login/login.module';
 
 const COMPONENTS = [PagesComponent]
 
@@ -17,7 +19,9 @@ const COMPONENTS = [PagesComponent]
   imports: [
     CommonModule,
     TemplateModule,
-    HomeModule
+    HomeModule,
+    LoginModule,
+    RouterModule,
   ],
   exports: [
     PagesComponent,

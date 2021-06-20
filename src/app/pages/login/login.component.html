@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="main d-flex justify-content-center align-items-center">
+  <div class="login-container col-12 col-sm-3 d-flex flex-column justify-content-center align-items-center shadow-sm shadow-none">
+    <!-- <img src="../../../assets/bank-mandiri.svg" width="80" class="col-12" height="40" alt=""> -->
+    <h2 class="mb-sm-4 mb-2">Login</h2>
+    <p>Welcome back! Login to access</p>
+    <form action="" class="d-flex flex-column col-10" [formGroup]="authData">
+      <div class="mb-3">
+        <input formControlName="username" type="username" placeholder="Username" class="form-control" id="">
+      </div>
+      <div class="mb-3">
+        <input formControlName="password" type="password" placeholder="Password" class="form-control" id="">
+      </div>
+      <div class="text-end mb-3">
+        <a href="#" class="forgot-text" target="_blank" rel="noopener noreferrer">Forgot Password?</a>
+      </div>
+      <button *ngIf="!loading" type="submit" (click)="login()" class="btn col-12">Login</button>
+      <button *ngIf="loading" class="btn btn-col-12" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
+    </form>
+  </div>
+</div>

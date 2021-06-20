@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-benefit',
@@ -37,9 +38,15 @@ export class BenefitComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  goToLogin(): void {
+    this.router.navigateByUrl("/login")
   }
 
 }

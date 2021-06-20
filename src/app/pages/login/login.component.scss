@@ -1,0 +1,27 @@
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+}
+.login-container {
+  min-height: 400px;
+}
+.btn:hover {
+  background-color: var(--main-blue-color);
+}
+.btn {
+  background-color: #459dda;
+  color: white;
+}
+.forgot-text {
+  text-decoration: none;
+  color: var(--main-blue-color);
+}
+.forgot-text:hover {
+  font-weight: 900;
+}
+button {
+  font-weight: bold;
+}
+  
