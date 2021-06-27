@@ -8,19 +8,19 @@ import { TemplateModule } from '../template/template.module';
 import { BenefitComponent } from './home/components/benefit/benefit.component';
 import { HomeModule } from './home/home.module';
 import { RouterModule } from '@angular/router';
-import { LoginModule } from './login/login.module';
+import { LoginModule } from '../login/login.module';
+import { PagesRoutingModule } from './pages-routing.module';
 
 const COMPONENTS = [PagesComponent]
 
 @NgModule({
   declarations: [
-    ...COMPONENTS
+    ...COMPONENTS,
   ],
   imports: [
     CommonModule,
     TemplateModule,
-    HomeModule,
-    LoginModule,
+    PagesRoutingModule,
     RouterModule,
   ],
   exports: [

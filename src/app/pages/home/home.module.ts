@@ -5,6 +5,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { ProductsComponent } from './components/products/products.component';
 import { BenefitComponent } from './components/benefit/benefit.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { HomeRoutingModule } from './home-routing.module';
 
 const COMPONENTS = [HomeComponent, CarouselComponent, ProductsComponent, BenefitComponent]
 
@@ -14,7 +16,9 @@ const COMPONENTS = [HomeComponent, CarouselComponent, ProductsComponent, Benefit
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
+    HomeRoutingModule
   ],
   exports: [
     HomeComponent

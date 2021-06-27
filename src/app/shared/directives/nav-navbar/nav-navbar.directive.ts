@@ -2,7 +2,7 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 
 enum NavBarStyle {
   onScroll = 'navbar-light bg-light shadow-sm show',
-  transparent = 'navbar-light bg-transparent'
+  transparent = 'navbar-light bg-light shadow-sm'
 }
 
 @Directive({

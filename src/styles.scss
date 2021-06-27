@@ -1,13 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 //@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-@import url("https://use.typekit.net/vyz1ujy.css");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 * {
-    font-family: 'muli', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 :root {
   /* Colors */
   --main-blue-color: #246AA4;
+  --secondary-blue-color : #459dda;
   --main-yellow-color: #FFC106;
+  --blue-text-color: #195489;
+  --black-text-color: #222323;
+  --grey-text-color: #898989;
+}
+h5 {
+  color: var(--black-text-color);
+  // color: var(--blue-text-color);
+}
+p {
+  color: var(--grey-text-color);
 }

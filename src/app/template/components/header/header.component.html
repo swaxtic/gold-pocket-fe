@@ -4,13 +4,13 @@
     </a>
     <ul class="navbar-nav ml-2 flex-row">
       <li class="nav-item active">
-        <a class="nav-link" href="#platinum">Platinum <span class="sr-only"></span></a>
+        <a class="nav-link" routerLink="/product/1" >Platinum</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#gold">Gold</a>
+        <a class="nav-link" routerLink="/product/2" >Gold</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#silver">Silver</a>
+        <a class="nav-link" routerLink="/product/3">Silver</a>
       </li>
     </ul>
     <button type="button" class="btn disabled btn-secondary">{{dateNow | dateformat}}</button>
@@ -18,4 +18,8 @@
         <input class="search_input" type="text" name="" placeholder="Search...">
         <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
     </form>
+    <a routerLink="/profile" class="d-flex align-items-center link-dark text-decoration-none">
+      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+      <strong>mdo</strong>
+    </a>
 </nav>

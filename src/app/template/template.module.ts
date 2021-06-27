@@ -4,6 +4,7 @@ import { TemplateComponent } from './template.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 const LAYOUT: any = [];
 const COMPONENTS: any = [HeaderComponent, FooterComponent, TemplateComponent];
@@ -15,7 +16,8 @@ const COMPONENTS: any = [HeaderComponent, FooterComponent, TemplateComponent];
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     ...LAYOUT,
