@@ -3,50 +3,146 @@
     <div class="card-body">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="buy-tab" data-bs-toggle="tab" data-bs-target="#buy" type="button" role="tab" aria-controls="buy" aria-selected="true">Buy Gold</button>
+          <button class="nav-link active" id="buy-tab" data-bs-toggle="tab" data-bs-target="#buy" type="button" role="tab" aria-controls="buy" aria-selected="true">Buy {{product.productName}}</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="sell-tab" data-bs-toggle="tab" data-bs-target="#sell" type="button" role="tab" aria-controls="sell" aria-selected="false">Sell Gold</button>
+          <button class="nav-link" id="sell-tab" data-bs-toggle="tab" data-bs-target="#sell" type="button" role="tab" aria-controls="sell" aria-selected="false">Sell {{product.productName}}</button>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
+        <!-- Buy Tab -->
         <div class="tab-pane fade show active" id="buy" role="tabpanel" aria-labelledby="buy-tab">
-          <form class="d-flex flex-row justify-content-between">
+          <form class="d-flex flex-row justify-content-between" [formGroup]="purchaseData">
             <div class="col-7 d-flex justify-content-between m-1 flew-row">
               <div class="mb-3 col-6">
                 <label class="form-label">Value on IDR</label>
-                <input type="number" class="form-control" >
+                <input formControlName="rupiah" [value]="purchaseData.value.quantity * product.productPriceBuy" type="number" class="form-control" >
               </div>
               <div class="mb-3 col-6">
                 <label class="form-label">Value on Gram</label>
-                <input class="form-control">
+                <input formControlName="quantity" type="number" class="form-control">
               </div>
             </div>
             <div class="col-4 my-auto d-flex justify-content-cente flex-column">
-              <button type="submit" CustomButton class="col-12 mt-3">Submit</button>
+              <button type="submit" [disabled]="!purchaseData.valid" CustomButton data-bs-toggle="modal" data-bs-target="#checkout" class="col-12 mt-3">Proceed</button>
               <p>Dengan mengeklik tombol di atas. Anda sudah menyetujui syarat dan ketentuan yang berlaku.</p>
             </div>
           </form>
         </div>
+        <!-- Sell Tab -->
         <div class="tab-pane fade" id="sell" role="tabpanel" aria-labelledby="sell-tab">
-          <form class="d-flex flex-row justify-content-between">
+          <form class="d-flex flex-row justify-content-between" [formGroup]="purchaseData">
             <div class="col-7 d-flex justify-content-between m-1 flew-row">
               <div class="mb-3 col-6">
                 <label class="form-label">Value on IDR</label>
-                <input type="number" class="form-control" >
+                <input formControlName="rupiah" type="number" class="form-control" >
               </div>
               <div class="mb-3 col-6">
                 <label class="form-label">Value on Gram</label>
-                <input class="form-control">
+                <input formControlName="quantity" type="number" class="form-control">
               </div>
             </div>
-            <div class="col-4 d-flex justify-content-center flex-column">
-              <button type="submit" CustomButton class="col-12">Submit</button>
+            <div class="col-4 my-auto d-flex justify-content-cente flex-column">
+              <button type="submit" [disabled]="!purchaseData.valid" CustomButton data-bs-toggle="modal" data-bs-target="#sellModal" class="col-12 mt-3">Proceed</button>
               <p>Dengan mengeklik tombol di atas. Anda sudah menyetujui syarat dan ketentuan yang berlaku.</p>
             </div>
           </form>
         </div>
       </div>
+      <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+      [title]="chartOptions.title"></apx-chart>
+    </div>
+  </div>
+</div>
+
+<!-- modal buy -->
+<div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkoutLabel">Proceed</h5>
+        <button type="button" #closeEditPocketModal class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div>Transaction Detail</div>
+          <div class="row col-12 border-bottom">
+            <div class="col-6 text-start">
+              <p>{{purchaseData.value.quantity}}</p>
+            </div>
+            <div class="col col-6 text-end">
+              <p class="">{{purchaseData.value.quantity * product.productPriceBuy | currency:'Rp':'symbol':'3.0'}}</p>
+            </div>
+            <div class="col-12 mb-4" [formGroup]="purchaseData">
+              <select class="form-select" formControlName="pocket">
+                <option selected>Select Pocket</option>
+                <option *ngFor="let pocket of pockets" [ngValue]="pocket.id">{{pocket.pocketName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row col-12">
+            <div class="col-6 text-start">
+              <p>Total</p>
+            </div>
+            <div class="col col-6 text-end">
+              <p class="text-red">{{purchaseData.value.quantity * product.productPriceBuy | currency:'Rp':'symbol':'3.0'}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+          <button *ngIf="!loading" type="submit" CustomButton (click)="checkout(0)" class="btn">Buy {{product.productName}}</button>
+          <button *ngIf="loading" CustomButton class="btn" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- sell Modal -->
+<div class="modal fade" id="sellModal" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkoutLabel">Proceed</h5>
+        <button type="button" #closeEditPocketModal class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div>Transaction Detail</div>
+          <div class="row col-12 border-bottom">
+            <div class="col-6 text-start">
+              <p>{{purchaseData.value.quantity}}</p>
+            </div>
+            <div class="col col-6 text-end">
+              <p class="">{{purchaseData.value.quantity * product.productPriceBuy | currency:'Rp':'symbol':'3.0'}}</p>
+            </div>
+            <div class="col-12 mb-4" [formGroup]="purchaseData">
+              <select class="form-select" formControlName="pocket">
+                <option selected>Select Pocket</option>
+                <option *ngFor="let pocket of pockets" [ngValue]="pocket.id" [disabled]="pocket.pocketQty < purchaseData.value.quantity">{{pocket.pocketName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row col-12">
+            <div class="col-6 text-start">
+              <p>Total</p>
+            </div>
+            <div class="col col-6 text-end">
+              <p class="text-red">{{purchaseData.value.quantity * product.productPriceBuy | currency:'Rp':'symbol':'3.0'}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+          <button *ngIf="!loading" type="submit" CustomButton (click)="checkout(1)" class="btn">Buy {{product.productName}}</button>
+          <button *ngIf="loading" CustomButton class="btn" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

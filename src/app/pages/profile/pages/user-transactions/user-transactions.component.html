@@ -1,28 +1,70 @@
 <div class="d-flex">
-  <div class="card w-100 p-1">
-    <h4 class="mx-3 mt-3">History Transaction</h4>
-    <div class="card-body">
+  <div class="w-100 p-1">
+    <h3 class="mx-3 mt-3">Detail Transaction</h3>
+    <div *ngFor="let history of purchaseHistories; index as i" class="card-body">
       <div class="d-flex card justify-content-between mb-1 py-2 px-4">
         <div class="d-flex flex-row">
-          <div class="mx-1"><b><small>Tabungan Hari Tua</small></b></div>
-          <div><small> 23 Jun 2021 09:03 WIB |</small></div>
+          <div><small> {{history.purchaseDate | dateformat}} |</small></div>
           <div class="btn mx-1 btn-success btn-sm"> Berhasil</div>
-          <div><small>Transaksi Pembelian #22145153</small></div>
+          <div><small>Transaksi {{history.purchaseType==0 ? 'Pembelian':'Penjualan'}} #{{history.id}}</small></div>
         </div>
         <div class="d-flex align-items-center flex-row">
-          <img src="../../../../../assets/1.png" class="rounded card image" alt="...">
+          <img [src]="'/../../../../assets/'+getDetail(i)[0].product.productImage" class="rounded card image" alt="...">
           <div class="balance d-flex justify-content-between p-3 flex-grow-1 flex-column">
-            <div class="h6">Nilai Emas Anda</div>
-            <div class="h4">Rp.1.000.000</div>
-            <div class="paragraph">Jumlah Emas : 0,2933 gram</div>
+            <div class="h6">Pembelian {{getDetail(i)[0].product.productName}}</div>
+            <div class="h4">{{countTotalQty(i)}} gram</div>
+            <div class="paragraph">{{getDetail(i)[0].pocket.pocketName}}</div>
           </div>
           <div class="d-flex flex-column">
-            <p>Total Price</p>
-            <h6>Rp.200.000</h6>
+            <p>Total Terbayar</p>
+            <h6>{{getProductPrice(i) * countTotalQty(i) | currency:'Rp':'symbol':'3.0'}}</h6>
           </div>
         </div>
-        <div CustomButton class="align-self-end col-2">Detail</div>
+        <button CustomButton data-bs-toggle="modal" (click)="openModalDetail(i)" data-bs-target="#detailModal" class="align-self-end col-2">Detail</button>
       </div>
+    </div>
+    <div class="col-12">
+      <button [disabled]="page==1" (click)="pageChanged(page-1)" class="btn"><<</button>
+      Halaman : <button *ngFor="let page of createRange(totalPages)" (click)="pageChanged(page)" class="btn">{{page}}</button>
+      <button [disabled]="page==totalPages" (click)="pageChanged(+page+1)" class="btn">>></button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkoutLabel">Detail</h5>
+        <button type="button" #closeEditPocketModal class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+          <div>Transaction Detail</div>
+          <div *ngFor="let detail of getDetail(detailSelector)" class="card-body">
+            <div class="d-flex card justify-content-between mb-1 py-2 px-4">
+              <div class="d-flex flex-row">
+                <div class="mx-1"><b><small>{{detail.pocket.pocketName}}</small></b></div>
+                <div class="btn mx-1 btn-success btn-sm">Berhasil</div>
+                <div><small>Transaksi #{{detail.id}}</small></div>
+              </div>
+              <div class="d-flex align-items-center flex-row">
+                <img [src]="'/../../../../assets/'+detail.product.productImage" class="rounded card image" alt="...">
+                <div class="balance d-flex justify-content-between p-3 flex-grow-1 flex-column">
+                  <div class="h6">Beli {{detail.product.productName}}</div>
+                  <div class="h4">{{detail.quantityInGram}} gram</div>
+                  <div class="paragraph">{{detail.price | currency:'Rp':'symbol':'3.0'}}/gram</div>
+                </div>
+                <!-- <div class="d-flex flex-column">
+                  <p>Total Price</p>
+                  <h6>Rp.200.000</h6>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+        </div>
     </div>
   </div>
 </div>

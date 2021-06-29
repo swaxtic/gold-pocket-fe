@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  fullName: string = "";
   dateNow: Date = new Date();
 
-  constructor() { }
+  constructor(
+    private readonly authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.fullName = this.authService.getUserProfile();
   }
 
 }

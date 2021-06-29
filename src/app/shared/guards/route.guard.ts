@@ -14,9 +14,9 @@ export class RouteGuard implements CanActivate, CanActivateChild {
   protected authorize(
     activatedRoute: ActivatedRouteSnapshot,
     activatedState: RouterStateSnapshot): boolean {
-      const username = sessionStorage.getItem('username');
-      const password = sessionStorage.getItem('username');
-      if (!username || !password){
+      const userId = sessionStorage.getItem('user-id');
+      const userName = sessionStorage.getItem('username');    
+      if (!userId || !userName){
         sessionStorage.setItem('redirectBackUrl', activatedState.url);
         this.router.navigateByUrl('/login');
       }

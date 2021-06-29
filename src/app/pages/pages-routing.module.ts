@@ -15,7 +15,7 @@ const routes: Routes = [
         .then((m) => m.HomeModule),
       },
       {
-        path: 'product/:id',
+        path: 'product/:productId',
         canActivate: [RouteGuard],
         loadChildren: () => import('./product/product.module')
         .then((m) => m.ProductModule),
