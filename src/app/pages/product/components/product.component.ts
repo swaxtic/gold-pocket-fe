@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PocketModel } from 'src/app/shared/models/pocket.model';
 import { ProductModel } from 'src/app/shared/models/product.model';
@@ -56,18 +56,18 @@ export class ProductComponent implements OnInit {
     this.activatedRoute.params
       .subscribe((pathVariable: Params) => {
         this.productService.getData(pathVariable.productId)
-          .subscribe(
+          .then(
             (response => {
               this.product = response;
               this.loadPocket(userId, this.product.productName);
             })
-          );
+          ).catch(error => console.log(error));
       });
   }
 
   private loadPocket(userId: string | null, productName: string) {
     this.pocketService.getData(userId || '')
-      .subscribe(
+      .then(
         (response => {
           this.totalQty = 0;
           this.pockets = response;

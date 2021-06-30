@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { AuthService } from 'src/app/shared/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor( 
-    private readonly authService: LoginService,
+    private readonly authService: AuthService,
     private readonly router: Router
   ) { }
 
@@ -30,14 +30,14 @@ export class LoginComponent implements OnInit {
     this.loading=true;
     const credentials = this.authData.value
     console.log(credentials);
-    this.authService.login(credentials).subscribe((data) => {
+    this.authService.login(credentials).then((data) => {
       console.log(data);
       sessionStorage.setItem('user-id', data.id)
       sessionStorage.setItem('name', data.firstName+" "+data.lastName)
       sessionStorage.setItem('username', data.username)
       this.loading=false;
       this.router.navigateByUrl(sessionStorage.getItem('redirectBackUrl') || '/');
-    }, (error) => {
+    }).catch((error) => {
       alert('Password atau Email anda tidak ditemukan');
       this.loading=false;
       console.log(error);

@@ -32,11 +32,12 @@ export class UserTransactionsComponent implements OnInit {
       .subscribe((queryParams: Params) => {
         this.page = queryParams.page || 1;
         this.transactionService.getHistory(userId || '', this.page)
-          .subscribe((response) =>{
+          .then((response) =>{
             this.purchaseHistories = response.content;
             this.totalPages = response.totalPages;
             console.log(this.totalPages);
-          },err => console.log(err))
+          })
+          .catch(err => console.log(err))
       })
   }
 

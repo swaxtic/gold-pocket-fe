@@ -119,11 +119,11 @@ export class ProductTransactionComponent implements OnInit,AfterViewInit {
     this.activatedRoute.params
       .subscribe((pathVariable: Params) => {
         this.productService.getData(pathVariable.productId)
-          .subscribe(
+          .then(
             (response => {
               this.product = response;
               this.setChart()
-            })
+            }), error => console.log(error)
           );
       });
   }
@@ -144,12 +144,13 @@ export class ProductTransactionComponent implements OnInit,AfterViewInit {
     const userId = sessionStorage.getItem('user-id');
     console.log(data);
     this.transactionService.execute(data, userId || '')
-      .subscribe(response => {
+      .then(response => {
           console.log(response);
           window.location.reload()
           this.loading=false;
-      }, error => {
-        console.log(error);
+      })
+      .catch(err => {
+        console.log(err)
         this.loading=false;
       });   
     console.log(this.pockets);

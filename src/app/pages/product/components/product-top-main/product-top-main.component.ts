@@ -1,10 +1,8 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Route } from '@angular/router';
 import { PocketModel, PocketModelRequest } from 'src/app/shared/models/pocket.model';
 import { ProductModel } from 'src/app/shared/models/product.model';
 import { PocketService } from 'src/app/shared/services/pocket-service/pocket.service';
-import { ProductService } from 'src/app/shared/services/product-service/product.service';
 
 @Component({
   selector: 'app-product-top-main',
@@ -55,13 +53,12 @@ export class ProductTopMainComponent implements OnInit {
   }
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly productService: ProductService,
     private readonly pocketService: PocketService
     // private readonly router: Route
   ) { }
 
   ngOnInit(): void {
+    //
   }
 
   addPocket(): void {
@@ -77,12 +74,12 @@ export class ProductTopMainComponent implements OnInit {
     }
     console.log(sendData);
     this.pocketService.addPocket(sendData)
-      .subscribe(
+      .then(
         (response => {
           window.location.reload()
           console.log(response);
         })
-      );
+      ).catch(error => console.log(error));
   }
 
   editPocket(): void {
@@ -98,29 +95,23 @@ export class ProductTopMainComponent implements OnInit {
       }
     }
     this.pocketService.editPocket(sendData)
-      .subscribe(
+      .then(
         (response => {
           window.location.reload()
           console.log(response);
-        }), (error) => {
-          console.log(error);
-        }
-      )
-  }
-
-  sellPocket(): void {
-
+        })
+      ).catch(error => console.log(error))
   }
 
   deletePocket(id: string): void {
     this.pocketService.deletePocket(id)
-      .subscribe(
+      .then(
         (response => {
           window.location.reload()
           alert(response.message)
           console.log(response);
-        }),(error => alert(error.message))
-      )
+        })
+      ).catch(error => alert(error.message))
     ;
   }
 
