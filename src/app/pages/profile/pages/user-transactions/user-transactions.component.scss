@@ -2,3 +2,14 @@
   width: 80px;
   height: 80px;
 }
+.button-page {
+  background-color: var(--secondary-blue-color);
+  color: white;
+}
+.button-page:hover {
+  background-color: var(--main-blue-color);
+}
+.current {
+  background-color: bisque;
+  outline: 1px cornflowerblue;
+}

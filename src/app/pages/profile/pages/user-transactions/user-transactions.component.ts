@@ -43,7 +43,7 @@ export class UserTransactionsComponent implements OnInit {
   countTotalQty(index: number): number {
     let total = 0;
     this.purchaseHistories[index].purchaseDetails.forEach(result => {
-      total+=result.quantityInGram
+      total+= Math.round(result.quantityInGram * 1e2) / 1e2
     })
     return total;
   }

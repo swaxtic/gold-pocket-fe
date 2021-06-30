@@ -4,11 +4,16 @@ nav {
   padding: 10px;
   transition: background-color 200ms linear;
 }
+ul li a.nav-link.active {
+  font-weight: 500;
+  color: var(--secondary-blue-color);
+}
 .navbar-nav {
   flex : 1;
 }
-nav li:hover {
-  font-weight: bold;
+ul li a.nav-link:hover {
+  font-weight: 500;
+  color: var(--secondary-blue-color);
 }
 nav.show {
   padding: 3vh 3vw;

@@ -1,16 +1,16 @@
 <nav appNavNavbar>
-    <a class="navbar-brand">
+    <a routerLink="/" class="navbar-brand">
         <img src="../../../assets/bank-mandiri.svg" width="80" height="40" alt="">
     </a>
     <ul class="navbar-nav ml-2 flex-row">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/product/ff80808178fdba3a0178fdbbe0b10000" >Platinum</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/product/ff80808178fdba3a0178fdbbe0b10000" routerLinkActive="active" >Platinum</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/product/ff80808178f965fd0178f973f14b0001" >Gold</a>
+        <a class="nav-link" routerLink="/product/ff80808178f965fd0178f973f14b0001" routerLinkActive="active" >Gold</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/product/ff80808179133ef301791354eb3b0002">Silver</a>
+        <a class="nav-link" routerLink="/product/ff80808179133ef301791354eb3b0002" routerLinkActive="active">Silver</a>
       </li>
     </ul>
     <button type="button" class="btn disabled btn-secondary">{{dateNow | dateformat}}</button>

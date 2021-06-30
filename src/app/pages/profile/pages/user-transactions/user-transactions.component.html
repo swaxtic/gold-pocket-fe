@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <div class="w-100 p-1">
+  <div class="w-100">
     <h3 class="mx-3 mt-3">Detail Transaction</h3>
     <div *ngFor="let history of purchaseHistories; index as i" class="card-body">
       <div class="d-flex card justify-content-between mb-1 py-2 px-4">
@@ -23,11 +23,19 @@
         <button CustomButton data-bs-toggle="modal" (click)="openModalDetail(i)" data-bs-target="#detailModal" class="align-self-end col-2">Detail</button>
       </div>
     </div>
-    <div class="col-12">
-      <button [disabled]="page==1" (click)="pageChanged(page-1)" class="btn"><<</button>
-      Halaman : <button *ngFor="let page of createRange(totalPages)" (click)="pageChanged(page)" class="btn">{{page}}</button>
-      <button [disabled]="page==totalPages" (click)="pageChanged(+page+1)" class="btn">>></button>
-    </div>
+    <nav aria-label="col-12">
+      <ul class="pagination justify-content-center">
+        <li [ngClass]="page==1 ? 'page-item disabled' : 'page-item'">
+          <button (click)="pageChanged(page-1)" class="button-page page-link">Previous</button>
+        </li>
+        <li *ngFor="let page of createRange(totalPages)" class="page-item" aria-current="page">
+          <button class="page-link" (click)="pageChanged(page)">{{page}}</button>
+        </li>
+        <li [ngClass]="page==totalPages ? 'page-item disabled' : 'page-item'">
+          <button (click)="pageChanged(+page+1)" class="button-page page-link">Next</button>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>
 
