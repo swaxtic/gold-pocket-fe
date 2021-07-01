@@ -13,15 +13,18 @@ export class ProductService {
     private readonly http: HttpClient
   ) { }
 
-  async getData(id: string): Promise<any> {
+  getData(id: string): Observable<any> {
     return this.http.get(`http://localhost:8083/product/${id}`)
-      .toPromise()
-      .then((response: any) => response);
+      .pipe(
+        map((response: any) => response)
+      );
   }
 
-  async getHistoriesData(id: string): Promise<any> {
+  getHistoriesData(id: string): Observable<any> {
     return this.http.get(`http://localhost:8083/product/${id}/history`)
-      .toPromise()
-      .then((response: any) => response);
+      .pipe(
+        map((response: any) => response)
+      );
   }
+  
 }

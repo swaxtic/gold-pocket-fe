@@ -30,14 +30,15 @@ export class LoginComponent implements OnInit {
     this.loading=true;
     const credentials = this.authData.value
     console.log(credentials);
-    this.authService.login(credentials).then((data) => {
+    this.authService.login(credentials)
+    .subscribe((data) => {
       console.log(data);
       sessionStorage.setItem('user-id', data.id)
       sessionStorage.setItem('name', data.firstName+" "+data.lastName)
       sessionStorage.setItem('username', data.username)
       this.loading=false;
       this.router.navigateByUrl(sessionStorage.getItem('redirectBackUrl') || '/');
-    }).catch((error) => {
+    }, (error) => {
       alert('Password atau Email anda tidak ditemukan');
       this.loading=false;
       console.log(error);

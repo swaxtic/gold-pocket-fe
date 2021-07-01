@@ -74,12 +74,12 @@ export class ProductTopMainComponent implements OnInit {
     }
     console.log(sendData);
     this.pocketService.addPocket(sendData)
-      .then(
+      .subscribe(
         (response => {
           window.location.reload()
           console.log(response);
         })
-      ).catch(error => console.log(error));
+      );
   }
 
   editPocket(): void {
@@ -95,23 +95,25 @@ export class ProductTopMainComponent implements OnInit {
       }
     }
     this.pocketService.editPocket(sendData)
-      .then(
+      .subscribe(
         (response => {
           window.location.reload()
           console.log(response);
-        })
-      ).catch(error => console.log(error))
+        }), (error) => {
+          console.log(error);
+        }
+      )
   }
 
   deletePocket(id: string): void {
     this.pocketService.deletePocket(id)
-      .then(
+      .subscribe(
         (response => {
           window.location.reload()
           alert(response.message)
           console.log(response);
-        })
-      ).catch(error => alert(error.message))
+        }),(error => alert(error.message))
+      )
     ;
   }
 

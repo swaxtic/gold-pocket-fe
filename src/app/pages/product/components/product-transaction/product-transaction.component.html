@@ -137,7 +137,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
-          <button *ngIf="!loading" type="submit" CustomButton (click)="checkout(1)" class="btn">Buy {{product.productName}}</button>
+          <button *ngIf="!loading" type="submit" CustomButton (click)="checkout(1)" class="btn">Sell {{product.productName}}</button>
           <button *ngIf="loading" CustomButton class="btn" type="button" disabled>
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </button>

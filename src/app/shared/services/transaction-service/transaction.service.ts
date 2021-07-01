@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +12,18 @@ export class TransactionService {
     private readonly http: HttpClient
   ) { }
 
-  async execute(data: any, id: string): Promise<any> {
+  execute(data: any, id: string): Observable<any> {
     return this.http.post(`http://localhost:8083/purchase?customerId=${id}`, data)
-      .toPromise()
-      .then((response: any) => response);
+      .pipe(
+        map((response: any) => response)
+      );
   }
 
-  async getHistory(id: string, page: number): Promise<any> {
+  getHistory(id: string, page: number): Observable<any> {
     return this.http.get(`http://localhost:8083/purchases/${id}?page=${page-1}&size=5`)
-      .toPromise()
-      .then((response: any) => response);
+      .pipe(
+        map((response: any) => response)
+      );
   }
   
 }

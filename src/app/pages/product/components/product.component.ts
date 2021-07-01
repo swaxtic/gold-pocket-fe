@@ -56,18 +56,18 @@ export class ProductComponent implements OnInit {
     this.activatedRoute.params
       .subscribe((pathVariable: Params) => {
         this.productService.getData(pathVariable.productId)
-          .then(
+          .subscribe(
             (response => {
               this.product = response;
               this.loadPocket(userId, this.product.productName);
             })
-          ).catch(error => console.log(error));
+          );
       });
   }
 
   private loadPocket(userId: string | null, productName: string) {
     this.pocketService.getData(userId || '')
-      .then(
+      .subscribe(
         (response => {
           this.totalQty = 0;
           this.pockets = response;

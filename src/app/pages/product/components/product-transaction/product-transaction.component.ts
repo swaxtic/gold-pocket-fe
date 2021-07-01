@@ -1,13 +1,11 @@
-import { AfterContentInit, AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductModel } from 'src/app/shared/models/product.model';
 import {
-  ChartComponent,
   ApexAxisChartSeries,
   ApexChart,
   ApexXAxis,
   ApexTitleSubtitle
 } from "ng-apexcharts";
-import { ProductHistoriesModel } from 'src/app/shared/models/product-history.model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product-service/product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -27,7 +25,7 @@ export type ChartOptions = {
   templateUrl: './product-transaction.component.html',
   styleUrls: ['./product-transaction.component.scss']
 })
-export class ProductTransactionComponent implements OnInit,AfterViewInit {
+export class ProductTransactionComponent implements OnInit {
 
   loading: boolean = false;
 
@@ -71,7 +69,6 @@ export class ProductTransactionComponent implements OnInit,AfterViewInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly productService: ProductService,
     private readonly transactionService: TransactionService,
-    private readonly cd: ChangeDetectorRef
   ) {
     this.setChart();
     this.loadProduct();
@@ -107,10 +104,6 @@ export class ProductTransactionComponent implements OnInit,AfterViewInit {
     this.loadProduct()
   }
 
-  ngAfterViewInit() {
-    this.cd.detectChanges();
-  }
-
   submit(type: number): void {
     this.purchaseData.value.type = type;
   }
@@ -119,11 +112,11 @@ export class ProductTransactionComponent implements OnInit,AfterViewInit {
     this.activatedRoute.params
       .subscribe((pathVariable: Params) => {
         this.productService.getData(pathVariable.productId)
-          .then(
+          .subscribe(
             (response => {
               this.product = response;
               this.setChart()
-            }), error => console.log(error)
+            })
           );
       });
   }
@@ -144,13 +137,12 @@ export class ProductTransactionComponent implements OnInit,AfterViewInit {
     const userId = sessionStorage.getItem('user-id');
     console.log(data);
     this.transactionService.execute(data, userId || '')
-      .then(response => {
+      .subscribe(response => {
           console.log(response);
           window.location.reload()
           this.loading=false;
-      })
-      .catch(err => {
-        console.log(err)
+      }, error => {
+        console.log(error);
         this.loading=false;
       });   
     console.log(this.pockets);

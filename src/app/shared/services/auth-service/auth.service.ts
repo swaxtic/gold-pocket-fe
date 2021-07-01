@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthModel } from 'src/app/shared/models/auth-model';
 
@@ -12,13 +13,15 @@ export class AuthService {
     private readonly http: HttpClient
   ) { }
 
-  async login(credentials: AuthModel ): Promise<any> {
+  login(credentials: AuthModel ): Observable<any> {
     return this.http.post('http://localhost:8083/login', credentials)
-      .toPromise()
-      .then(response => response)
+      .pipe(
+        map((response: any) => response)
+      );
   }
 
   getUserProfile(): string {
     return sessionStorage.getItem("name") || ""
   }
+  
 }
