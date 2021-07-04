@@ -51,7 +51,7 @@ export class ProductComponent implements OnInit {
     this.loadProduct();
   }
 
-  private loadProduct() {
+  public loadProduct() {
     const userId = sessionStorage.getItem('user-id');
     this.activatedRoute.params
       .subscribe((pathVariable: Params) => {
@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit {
       });
   }
 
-  private loadPocket(userId: string | null, productName: string) {
+  public loadPocket(userId: string | null, productName: string) {
     this.pocketService.getData(userId || '')
       .subscribe(
         (response => {

@@ -43,6 +43,7 @@ export class BenefitComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //
   }
 
   goToLogin(): void {

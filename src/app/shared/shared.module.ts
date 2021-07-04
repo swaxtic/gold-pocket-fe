@@ -6,10 +6,9 @@ import { TitleformatPipe } from './pipes/title-format/titleformat.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsButtonDirective } from './directives/bs-button/bs-button.directive';
 import { CustomButtonDirective } from './directives/custom-button/custom-button.directive';
-import { RupiahPipe } from './pipes/rupiah-format/rupiah.pipe';
 
 const DIRECTIVES = [NavNavbarDirective, BsButtonDirective, CustomButtonDirective]
-const PIPES = [DateformatPipe, TitleformatPipe, RupiahPipe]
+const PIPES = [DateformatPipe, TitleformatPipe]
 
 @NgModule({
   declarations: [

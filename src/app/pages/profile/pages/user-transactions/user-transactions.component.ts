@@ -11,7 +11,35 @@ import { TransactionService } from 'src/app/shared/services/transaction-service/
 export class UserTransactionsComponent implements OnInit {
 
 
-  purchaseHistories: PurchaseHistoryResponse[] = [];
+  purchaseHistories: PurchaseHistoryResponse[] = [{
+    id: '',
+    purchaseDate: new Date(),
+    purchaseType: 0,
+    customer: {
+        id: '',
+        firstName: '',
+        lastName: '',
+    },
+    purchaseDetails: [{
+      id: '',
+      price: 0,
+      quantityInGram: 0,
+      product: {
+        id: '',
+        productImage: '',
+        productName: '',
+        productPriceBuy: 0,
+        productPriceSell: 0,
+        productStatus: 0,
+        updatedAt: new Date,
+        createdAt: new Date,
+      },
+      pocket: {
+        id: '',
+        pocketName: '',
+      }
+    }]
+  }];
   detailSelector: number = 0;
   page: number = 0;
   totalPages: number = 0;
