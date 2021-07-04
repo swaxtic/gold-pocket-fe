@@ -74,7 +74,7 @@ export class ProductTransactionComponent implements OnInit {
     this.loadProduct();
   }
 
-  private setChart() {
+  setChart() {
     this.chartOptions = {
       series: [
         {

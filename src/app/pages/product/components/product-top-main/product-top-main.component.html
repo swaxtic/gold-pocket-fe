@@ -6,7 +6,7 @@
         <div class="balance d-flex justify-content-between p-3 flex-grow-1 flex-column">
           <div class="h6">Nilai {{product.productName}} Anda</div>
           <div class="h4">{{totalQty * product.productPriceSell | currency:'Rp':'symbol':'3.0'}}</div>
-          <div class="paragraph">Jumlah {{product.productName}} : {{totalQty}} gram</div>
+          <div class="paragraph">Jumlah {{product.productName}} : {{totalQty | number: '1.2-2'}} gram</div>
         </div>
         <div class="card d-flex p-2 flex-row justify-content-between shadow-sm" >
           <div class="p-1 mr-1">
@@ -30,7 +30,7 @@
         <img [src]="'../../../../../assets/'+product.productImage" class="rounded product-pocket card" alt="...">
       </div>
       <h4 class="card-text">{{pocket.pocketQty * product.productPriceSell | currency:'Rp':'symbol':'3.0' }}</h4>
-      <p class="card-text">{{pocket.pocketQty}} Gram</p>
+      <p class="card-text">{{pocket.pocketQty | number: '1.2-2'}} Gram</p>
     </div>
     <div class="card-footer justify-content-center">
       <button class="btn btn-sm btn-warning text-white" data-bs-toggle="modal" (click)="selectedPocket = pocket" data-bs-target="#editPocketModal"><i class="bi bi-pencil-square" aria-hidden="true"></i> Edit</button>
