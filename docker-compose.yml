@@ -1,0 +1,50 @@
+version: '2'
+
+services: 
+  app-server:
+    image: 'angular-training-backend:latest'
+    build: 
+      context: .
+    container_name: crud-user-be
+    ports: 
+      - 8080:8080
+    depends_on: 
+      - db
+    environment: 
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+      - SPRING_DATASOURCE_USERNAME=compose-postgres
+      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    networks: 
+      - backend
+      - frontend
+
+  # Front End Service
+  app-client:
+    image: 'angular-training:latest'
+    build: .
+    ports: 
+      - 80:80
+    container_name: crud-user-fe
+    restart: always
+    depends_on: 
+      - app-server
+    networks: 
+      - frontend
+    links: 
+      - app-server
+    
+  #DB
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: postgre-SQL
+    environment: 
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres
+    networks: 
+      - backend
+
+#NET
+networks: 
+  backend:
+  frontend:

@@ -17,9 +17,9 @@ describe('DateformatPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('should output "Jumat, 02 Juli 2021"', () => {
+  it('should output "Kamis, 08 Juli 2021"', () => {
     const result = pipe.transform(new Date());
-    expect(result).toEqual("Sabtu, 03 Juli 2021");
+    expect(result).toEqual("Kamis, 08 Juli 2021");
   })
 
 });

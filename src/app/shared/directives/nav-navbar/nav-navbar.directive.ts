@@ -26,6 +26,8 @@ export class NavNavbarDirective {
     return `navbar fixed-top navbar-expand-lg ${this.navbarStyle}`
   }
 
-  constructor() { }
+  constructor() { 
+    //
+  }
 
 }

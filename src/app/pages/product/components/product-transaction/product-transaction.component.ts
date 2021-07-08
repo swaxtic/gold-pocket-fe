@@ -108,7 +108,7 @@ export class ProductTransactionComponent implements OnInit {
     this.purchaseData.value.type = type;
   }
 
-  private loadProduct() {
+  loadProduct() {
     this.activatedRoute.params
       .subscribe((pathVariable: Params) => {
         this.productService.getData(pathVariable.productId)
@@ -139,7 +139,10 @@ export class ProductTransactionComponent implements OnInit {
     this.transactionService.execute(data, userId || '')
       .subscribe(response => {
           console.log(response);
-          window.location.reload()
+          //TODO: Hidden modal and then reload data product
+          // this.loadProduct();
+          //TODO: Fix Reload
+          // window.location.reload();
           this.loading=false;
       }, error => {
         console.log(error);

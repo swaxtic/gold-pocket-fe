@@ -26,7 +26,7 @@ export class CarouselComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-
+    //tdb
   }
 
 }

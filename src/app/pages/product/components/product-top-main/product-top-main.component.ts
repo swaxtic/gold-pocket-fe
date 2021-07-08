@@ -76,7 +76,8 @@ export class ProductTopMainComponent implements OnInit {
     this.pocketService.addPocket(sendData)
       .subscribe(
         (response => {
-          window.location.reload()
+          //TODO: Fix Location Reload()
+          // window.location.reload()
           console.log(response);
         })
       );
@@ -97,7 +98,8 @@ export class ProductTopMainComponent implements OnInit {
     this.pocketService.editPocket(sendData)
       .subscribe(
         (response => {
-          window.location.reload()
+          //TODO: Fix Location Reload()
+          // window.location.reload()
           console.log(response);
         }), (error) => {
           console.log(error);
@@ -109,7 +111,8 @@ export class ProductTopMainComponent implements OnInit {
     this.pocketService.deletePocket(id)
       .subscribe(
         (response => {
-          window.location.reload()
+          //TODO: Fix Location Reload()
+          // window.location.reload()
           alert(response.message)
           console.log(response);
         }),(error => alert(error.message))

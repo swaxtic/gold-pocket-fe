@@ -3,26 +3,24 @@ import { HttpClientTestingModule, HttpTestingController} from "@angular/common/h
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { AuthService } from 'src/app/shared/services/auth-service/auth.service';
-import { of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
+import { AuthModel } from 'src/app/shared/models/auth-model';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  // let mockAuthService: jasmine.SpyObj<AuthService>
+  let authService: AuthService;
 
   beforeEach(async () => {
-    // mockAuthService = jasmine.createSpyObj('AuthService',['login', 'getUserProfile'])
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [RouterTestingModule, HttpClientTestingModule],
-      // providers: [{
-      //   provide : AuthService, useValue: mockAuthService
-      // }]
+      providers: [AuthService]
     }).compileComponents();
     fixture = TestBed.createComponent(LoginComponent);
+    authService = TestBed.inject(AuthService);
     component = fixture.componentInstance;
-
-    // mockAuthService.login
+    fixture.detectChanges();
   });
 
   it('should create component', () => {
@@ -38,7 +36,8 @@ describe('LoginComponent', () => {
     })
   })
 
-  const mockLoginOutput = {
+  describe('#Login()', () => {
+    const mockLoginResponse = {
       "id": "ff80808178f8dea30178f8ded8fe0000",
       "username": "ahmad",
       "status": true,
@@ -46,27 +45,17 @@ describe('LoginComponent', () => {
       "firstName": "Ahmad",
       "lastName": "Invoker"
   }
-
-  describe('#Login()', () => {
-    // it('should call service', () => {
-    //    expect(mockAuthService.login).toHaveBeenCalled()
-    // })
     it('should loading at Login()', () => {
       component.login();
       expect(component.loading).toBeTruthy()
     })
-
-    
-    // it('should grant user', fakeAsync(() => {
-    //   const mockTask = productService.getData('ff80808178fdba3a0178fdbbe0b10000');
-    //   mockTask.subscribe((product) => {
-    //     fixture.detectChanges();
-    //     tick();
-    //     component.product = product
-    //     fixture.detectChanges();
-    //     expect(component.product).toEqual(mockProduct);
-    //   });
-    // }))
+    it('should call login() after click', () => {
+      const spy = spyOn(authService, 'login').and.callFake((credentials: AuthModel): Observable<any> => {
+        return from([mockLoginResponse])
+      })
+      component.login();
+      expect(spy).toHaveBeenCalled();
+    });
 
   });
 });
