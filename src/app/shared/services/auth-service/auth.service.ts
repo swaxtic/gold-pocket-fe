@@ -9,12 +9,14 @@ import { AuthModel } from 'src/app/shared/models/auth-model';
 })
 export class AuthService {
 
+  BASE_URL = "http://localhost:8080"
+
   constructor(
     private readonly http: HttpClient
   ) { }
 
   login(credentials: AuthModel ): Observable<any> {
-    return this.http.post('http://localhost:8083/login', credentials)
+    return this.http.post(`${this.BASE_URL}/login`, credentials)
       .pipe(
         map((response: any) => response)
       );

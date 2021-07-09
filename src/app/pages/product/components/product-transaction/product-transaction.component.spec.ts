@@ -8,6 +8,8 @@ import { TransactionService } from 'src/app/shared/services/transaction-service/
 
 import { ProductTransactionComponent } from './product-transaction.component';
 
+//TODO: proxyconf, bikin BASEURL di service
+
 describe('ProductTransactionComponent', () => {
   let component: ProductTransactionComponent;
   let fixture: ComponentFixture<ProductTransactionComponent>;

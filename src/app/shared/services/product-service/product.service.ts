@@ -8,20 +8,21 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
 
+  BASE_URL = "http://localhost:8080"
 
   constructor(
     private readonly http: HttpClient
   ) { }
 
   getData(id: string): Observable<any> {
-    return this.http.get(`http://localhost:8083/product/${id}`)
+    return this.http.get(`${this.BASE_URL}/product/${id}`)
       .pipe(
         map((response: any) => response)
       );
   }
 
   getHistoriesData(id: string): Observable<any> {
-    return this.http.get(`http://localhost:8083/product/${id}/history`)
+    return this.http.get(`${this.BASE_URL}/product/${id}/history`)
       .pipe(
         map((response: any) => response)
       );

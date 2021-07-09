@@ -77,7 +77,7 @@ export class ProductTopMainComponent implements OnInit {
       .subscribe(
         (response => {
           //TODO: Fix Location Reload()
-          // window.location.reload()
+          window.location.reload()
           console.log(response);
         })
       );
@@ -99,7 +99,7 @@ export class ProductTopMainComponent implements OnInit {
       .subscribe(
         (response => {
           //TODO: Fix Location Reload()
-          // window.location.reload()
+          window.location.reload()
           console.log(response);
         }), (error) => {
           console.log(error);
@@ -112,7 +112,7 @@ export class ProductTopMainComponent implements OnInit {
       .subscribe(
         (response => {
           //TODO: Fix Location Reload()
-          // window.location.reload()
+          window.location.reload()
           alert(response.message)
           console.log(response);
         }),(error => alert(error.message))

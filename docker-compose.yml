@@ -2,18 +2,18 @@ version: '2'
 
 services: 
   app-server:
-    image: 'angular-training-backend:latest'
+    image: 'gold-pocket-be:latest'
     build: 
       context: .
-    container_name: crud-user-be
+    container_name: gold-pocket-be
     ports: 
       - 8080:8080
     depends_on: 
       - db
     environment: 
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
-      - SPRING_DATASOURCE_USERNAME=compose-postgres
-      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/gold_pocket
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=administrator
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     networks: 
       - backend
@@ -21,11 +21,11 @@ services:
 
   # Front End Service
   app-client:
-    image: 'angular-training:latest'
+    image: 'gold-pocket-fe:latest'
     build: .
     ports: 
       - 80:80
-    container_name: crud-user-fe
+    container_name: gold-pocket-fe
     restart: always
     depends_on: 
       - app-server
@@ -39,10 +39,12 @@ services:
     image: 'postgres:13.1-alpine'
     container_name: postgre-SQL
     environment: 
-      - POSTGRES_USER=compose-postgres
-      - POSTGRES_PASSWORD=compose-postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=administrator
     networks: 
       - backend
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
 
 #NET
 networks: 

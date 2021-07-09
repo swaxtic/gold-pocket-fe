@@ -9,33 +9,35 @@ import { PocketModelRequest } from '../../models/pocket.model';
 })
 export class PocketService {
 
+  BASE_URL = "http://localhost:8080"
+
   constructor(
     private readonly http: HttpClient
   ) { }
 
   getData(customerId: string): Observable<any> {
-    return this.http.get(`http://localhost:8083/customer/${customerId}/pockets`)
+    return this.http.get(`${this.BASE_URL}/customer/${customerId}/pockets`)
       .pipe(
         map((response: any) => response)
       );
   }
 
   addPocket(data: PocketModelRequest): Observable<any> {
-    return this.http.post(`http://localhost:8083/pocket`, data)
+    return this.http.post(`${this.BASE_URL}/pocket`, data)
       .pipe(
         map((response: any) => response)
       );
   }
 
   editPocket(data: PocketModelRequest): Observable<any> {
-    return this.http.put(`http://localhost:8083/pocket`, data)
+    return this.http.put(`${this.BASE_URL}/pocket`, data)
       .pipe(
         map((response: any) => response)
       );
   }
 
   deletePocket(id: string): Observable<any> {
-    return this.http.delete(`http://localhost:8083/pocket/${id}`)
+    return this.http.delete(`${this.BASE_URL}/pocket/${id}`)
       .pipe(
         map((response: any) => response)
       );

@@ -142,7 +142,7 @@ export class ProductTransactionComponent implements OnInit {
           //TODO: Hidden modal and then reload data product
           // this.loadProduct();
           //TODO: Fix Reload
-          // window.location.reload();
+          window.location.reload();
           this.loading=false;
       }, error => {
         console.log(error);
